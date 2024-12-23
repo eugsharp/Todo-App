@@ -1,29 +1,58 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <ctype.h>
 #include "utils.h"
 
-void days_menu() { 
-    char inpiut[] = "";
+void days_menu() {
+    char input[10];
     int choice;
 
-    printf("----------------\n");
-    printf("    DAYS MENU\n");
-    printf("----------------\n");
+    while (1) {
+        printf("----------------\n");
+        printf("    DAYS MENU\n");
+        printf("----------------\n");
+        printf("1. Add Task\n");
+        printf("2. Edit Task\n");
+        printf("3. Delete Task\n");
+        printf("4. Back\n");
+        printf("----------------\n");
+        printf("Enter your choice: ");
+        scanf("%s", input);
 
-    // display all tasks
+        // Validate choice to be an integer
+        if (!is_valid_integer(input)) {
+            printf("Invalid input. Please enter a valid integer.\n");
+            clear_input_buffer();
+            continue;
+        }
 
-    printf("1. Add Task\n");
-    printf("2. Edit Task\n");
-    printf("3. Delete Task\n");
-    printf("4. Back\n");
-    printf("----------------\n");
-    printf("Enter your choice: ");
-    scanf("%d", &choice);
+        // Convert choice to integer
+        choice = atoi(input);
+
+        switch (choice) {
+            case 1:
+                system("clear");
+                printf("Add Task\n");
+                break;
+            case 2:
+                system("clear");
+                printf("Edit Task\n");
+                break;
+            case 3:
+                system("clear");
+                printf("Delete Task\n");
+                break;
+            case 4:
+                system("clear");
+                return; // Go back to the main menu
+            default:
+                system("clear");
+                printf("Invalid choice. Please try again.\n");
+        }
+    }
 }
 
-int main() { 
-    char input[] = "";
+int main() {
+    char input[10];
     int choice;
 
     while (1) {
@@ -41,7 +70,8 @@ int main() {
 
         // Validate choice to be an integer
         if (!is_valid_integer(input)) {
-            printf("\nInvalid input. Please enter a valid integer.\n");
+            system("clear");
+            printf("Invalid input. Please enter a valid integer.\n");
             clear_input_buffer();
             continue;
         }
@@ -49,25 +79,29 @@ int main() {
         // Convert choice to integer
         choice = atoi(input);
 
-        switch(choice) {
+        switch (choice) {
             case 1:
+                system("clear");
                 days_menu();
                 break;
             case 2:
+                system("clear");
                 printf("Weeks Menu\n");
                 break;
             case 3:
+                system("clear");
                 printf("Months Menu\n");
                 break;
             case 4:
+                system("clear");
                 printf("Years Menu\n");
                 break;
             case 5:
                 printf("Exiting program...\n");
                 return 0;
             default:
-                printf("\nInvalid choice. Please enter a valid choice.\n");
-                break;
+                system("clear");
+                printf("Invalid choice. Please enter a valid choice.\n");
         }
     }
 
