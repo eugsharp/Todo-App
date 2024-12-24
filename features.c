@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include <ctype.h>
+#include "data.h"
 
 // time frame is either days, weeks, months, or years
 void display_tasks(const char* time_frame) {
@@ -53,7 +54,6 @@ void add_task(const char *time_frame) {
     printf("Enter task: ");
     clear_input_buffer(); // clean input buffer so fgets can wait for input
     fgets(task, sizeof(task), stdin);
-    //scanf("%s", task);
 
     // write task to file
     char filename[256]; 
@@ -72,10 +72,58 @@ void add_task(const char *time_frame) {
 }
 
 void edit_task(const char *time_frame) {
-    printf("Edit Task\n");
+
+    char header[256];
+    snprintf(header, sizeof(header), "%s MENU", time_frame);
+    for (int i = 0; header[i]; i++) {
+        header[i] = toupper(header[i]);
+    }
+
+    print_header(header);
+
+    // display tasks
+    display_tasks(time_frame);
+    printf("----------------\n");
+    print_header(time_frame);
+
+    // ask user which task number to edit
+    char task_number[256];
+    printf("Enter task number to edit: ");
+    scanf("%s", task_number);
+
+    // get bounds (1 -> number of tasks)
+
+    // input validation (ensure task number is an integer and within bounds)
+
+    // ask user to enter their edits
+    char line_number[256];
+    printf("Enter new line: ");
+    clear_input_buffer(); // clean input buffer so fgets can wait for input
+    fgets(line_number, sizeof(line_number), stdin);
+    
+    // open file
+    char filename[256]; 
+    sprintf(filename, "entry-files/%s.txt", time_frame);
+
+    FILE* file = fopen(filename, "a");
+    if (file == NULL) {
+        perror("Error opening file");
+        return;
+    }
+    
+    // replace the respective line in file
+
+    system("clear");
 }
 
 void delete_task(const char *time_frame) {
-    printf("Delete Task\n");
+    
+    // display menu header
+
+    // display tasks
+
+    // promt user for task number to delete
+
+    // remove the respective line in file
 }
 
