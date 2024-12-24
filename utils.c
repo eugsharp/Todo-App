@@ -24,3 +24,9 @@ int is_valid_integer(const char *str) {
 
     return 1;
 }
+
+void print_header(const char *header) {
+    printf("----------------\n");
+    printf("    %s\n", header);
+    printf("----------------\n");
+}

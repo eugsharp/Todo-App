@@ -1,19 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "utils.h"
+#include "features.h"
 
 void days_menu() {
     char input[10];
     int choice;
 
     while (1) {
+        print_header("DAYS MENU");
+
+        // Display all tasks
+        display_tasks("day");
+
         printf("----------------\n");
-        printf("    DAYS MENU\n");
-        printf("----------------\n");
+        
         printf("1. Add Task\n");
         printf("2. Edit Task\n");
         printf("3. Delete Task\n");
-        printf("4. Back\n");
+        printf("4. Back to Main Menu\n");
         printf("----------------\n");
         printf("Enter your choice: ");
         scanf("%s", input);
@@ -31,15 +36,15 @@ void days_menu() {
         switch (choice) {
             case 1:
                 system("clear");
-                printf("Add Task\n");
+                add_task("day");
                 break;
             case 2:
                 system("clear");
-                printf("Edit Task\n");
+                edit_task("day");
                 break;
             case 3:
                 system("clear");
-                printf("Delete Task\n");
+                delete_task("day");
                 break;
             case 4:
                 system("clear");
@@ -55,10 +60,10 @@ int main() {
     char input[10];
     int choice;
 
+    // system("clear");
+
     while (1) {
-        printf("----------------\n");
-        printf("   MAIN MENU\n");
-        printf("----------------\n");
+        print_header("MAIN MENU");
         printf("1. Days Menu\n");
         printf("2. Weeks Menu\n");
         printf("3. Months Menu\n");
