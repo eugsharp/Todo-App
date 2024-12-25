@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "utils.h"
 #include "features.h"
+#include "data.h"
 
 void days_menu() {
     char input[10];
@@ -61,6 +62,10 @@ int main() {
     int choice;
 
     // system("clear");
+    update_array("day");
+    update_array("week");
+    update_array("month");
+    update_array("year");
 
     while (1) {
         print_header("MAIN MENU");

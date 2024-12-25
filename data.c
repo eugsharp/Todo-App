@@ -1,12 +1,13 @@
 #include <stdio.h>
 #include "data.h"  
+#include <string.h>
 
 void update_array(const char *time_frame) {
     // open file
     char filename[256]; 
     sprintf(filename, "entry-files/%s.txt", time_frame);
 
-    FILE* file = fopen(filename, 'r');
+    FILE* file = fopen(filename, "r");
 
     if (file == NULL) {
         perror("Error opening file");
@@ -23,13 +24,13 @@ void update_array(const char *time_frame) {
         }
 
         // copy line to array (depending on timeframe specifed)
-       if (time_frame == "day") {
+       if (strcmp(time_frame, "day") == 0) {
             strcpy(day_tasks[index], line);
-        } else if (time_frame == "week") {
+        } else if (strcmp(time_frame, "week") == 0) {
             strcpy(week_tasks[index], line);
-        } else if (time_frame == "month") {
+        } else if (strcmp(time_frame, "month") == 0) {
             strcpy(month_tasks[index], line);
-        } else if (time_frame == "year") {
+        } else if (strcmp(time_frame, "year") == 0) {
             strcpy(year_tasks[index], line);
        }
 

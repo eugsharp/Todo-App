@@ -3,6 +3,7 @@
 #include "utils.h"
 #include <ctype.h>
 #include "data.h"
+#include <string.h>
 
 // time frame is either days, weeks, months, or years
 void display_tasks(const char* time_frame) {
@@ -68,7 +69,14 @@ void add_task(const char *time_frame) {
     fprintf(file, "%s", task);
     fclose(file);
 
+    update_array(time_frame);
+
     system("clear");
+
+    // print array for debug
+    // for (int i = 0; i < 256; i++) {
+    //     printf("%d. %s\n", i, day_tasks[i]);
+    // }
 }
 
 void edit_task(const char *time_frame) {
@@ -84,7 +92,6 @@ void edit_task(const char *time_frame) {
     // display tasks
     display_tasks(time_frame);
     printf("----------------\n");
-    print_header(time_frame);
 
     // ask user which task number to edit
     char task_number[256];
@@ -96,24 +103,57 @@ void edit_task(const char *time_frame) {
     // input validation (ensure task number is an integer and within bounds)
 
     // ask user to enter their edits
-    char line_number[256];
+    char edited_line[256];
     printf("Enter new line: ");
     clear_input_buffer(); // clean input buffer so fgets can wait for input
-    fgets(line_number, sizeof(line_number), stdin);
+    fgets(edited_line, sizeof(edited_line), stdin);
     
+    // REPLACE RESPECTIVE LINE IN FILE
+    // get the appropriate array
+    char task_array[256][256];
+    if (strcmp(time_frame, "day") == 0){
+        for (int i = 0; i < 256; i++) {
+            strcpy(task_array[i], day_tasks[i]);
+        }
+    } else if (strcmp(time_frame, "week") == 0){
+        for (int i = 0; i < 256; i++) {
+            strcpy(task_array[i], week_tasks[i]);
+        }
+    } else if (strcmp(time_frame, "month") == 0){
+        for (int i = 0; i < 256; i++) {
+            strcpy(task_array[i], month_tasks[i]);
+        }
+    } else if (strcmp(time_frame, "year") == 0){
+        for (int i = 0; i < 256; i++) {
+            strcpy(task_array[i], year_tasks[i]);
+        }
+    }
+
+    system("clear");
+    // print the task array for debug
+    for (int i = 0; i < 256; i++) {
+        printf("%d. %s\n", i, task_array[i]);
+    }
+    
+    // change the respective term in array
+    strcpy(task_array[atoi(task_number) - 1], edited_line);
+
+    // place each term in array back to file
     // open file
     char filename[256]; 
     sprintf(filename, "entry-files/%s.txt", time_frame);
 
-    FILE* file = fopen(filename, "a");
+    FILE* file = fopen(filename, "w");
     if (file == NULL) {
         perror("Error opening file");
         return;
     }
-    
-    // replace the respective line in file
 
-    system("clear");
+    // for (int i = 0; i < 256; i++) {
+    //     fprintf(file, "%s", task_array[i]);
+    // }
+    
+    fclose(file);
 }
 
 void delete_task(const char *time_frame) {
