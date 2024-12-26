@@ -6,6 +6,14 @@ void update_array(const char *time_frame) {
     // open file
     char filename[256]; 
     sprintf(filename, "entry-files/%s.txt", time_frame);
+    
+    // empty array first
+    for (int i = 0; i < 256; i++) {
+        day_tasks[i][0] = '\0';
+        week_tasks[i][0] = '\0';
+        month_tasks[i][0] = '\0';
+        year_tasks[i][0] = '\0';
+    }
 
     FILE* file = fopen(filename, "r");
 
@@ -19,10 +27,6 @@ void update_array(const char *time_frame) {
     int index = 0;
     while (fgets(line, sizeof(line), file)) {
         
-        if (line[0] == '\n') {
-            continue;
-        }
-
         // copy line to array (depending on timeframe specifed)
        if (strcmp(time_frame, "day") == 0) {
             strcpy(day_tasks[index], line);
@@ -36,6 +40,11 @@ void update_array(const char *time_frame) {
 
         index++;
     }
+
+    // print array for debug
+    // for (int i = 0; i < 256; i++) { 
+    //     printf("%s", day_tasks[i]);
+    // }
 }
 
 int get_num_of_tasks(const char* time_frame) { 

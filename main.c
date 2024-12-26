@@ -9,6 +9,9 @@ void days_menu() {
     int choice;
 
     while (1) {
+
+        update_array("day");
+
         print_header("DAYS MENU");
 
         // Display all tasks

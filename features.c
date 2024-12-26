@@ -69,8 +69,6 @@ void add_task(const char *time_frame) {
     fprintf(file, "%s", task);
     fclose(file);
 
-    update_array(time_frame);
-
     system("clear");
 }
 
@@ -173,21 +171,10 @@ void edit_task(const char *time_frame) {
     }
     
     fclose(file);
-
-    update_array(time_frame);
-    
-    // print the task array for debug
-    // for (int i = 0; i < 256; i++) {
-    //     printf("%d. %s\n", i, task_array[i]);
-    // }
 }
 
 void delete_task(const char *time_frame) {
     
-    // promt user for task number to delete
-
-    // remove the respective line in file
-
     char header[256];
     char task_number[256];
 
@@ -227,6 +214,8 @@ void delete_task(const char *time_frame) {
 
         break;
     }   
+    
+    system("clear");
 
     // DELETE RESPECTIVE LINE IN FILE
     // open file
@@ -254,11 +243,6 @@ void delete_task(const char *time_frame) {
 
         index++;
     }
-    
-    // print temp file for debug
-    while (fgets(line, sizeof(line), temp)) {
-        printf("%s", line);
-    }
 
     // delete the original file
     if (remove(filename) != 0) {
@@ -275,13 +259,5 @@ void delete_task(const char *time_frame) {
     // close files
     fclose(file);
     fclose(temp);
-
-    // update array
-    update_array(time_frame);
-
-    // print the task array for debug
-    // for (int i = 0; i < 256; i++) {
-    //     printf("%d. %s\n", i, day_tasks[i]);
-    // }
 }
 
