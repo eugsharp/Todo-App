@@ -26,6 +26,7 @@ void days_menu() {
 
         // Validate choice to be an integer
         if (!is_valid_integer(input)) {
+            system("clear");
             printf("Invalid input. Please enter a valid integer.\n");
             clear_input_buffer();
             continue;

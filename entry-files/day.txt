@@ -1,12 +1,2 @@
-Math Questions 1-2
-Chemistry Questions 1-3
-Physics Questions 1-2
-Biology Questions 1-5
-Peanut Butter
-JJJ
-PPP
-LLL
-;;;
-999
-QQQ
-PPP
+AA
+C

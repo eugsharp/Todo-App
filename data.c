@@ -37,3 +37,27 @@ void update_array(const char *time_frame) {
         index++;
     }
 }
+
+int get_num_of_tasks(const char* time_frame) { 
+
+    int num_of_tasks = 0;
+
+    // open file
+    char filename[256]; 
+    sprintf(filename, "entry-files/%s.txt", time_frame);
+    FILE* file = fopen(filename, "r");
+
+    if (file == NULL) { 
+        perror("Error opening file");
+        return 0;
+    }
+
+    char line[256];
+    while (fgets(line, sizeof(line), file)) {
+        if (line[0] != '\n') {
+            num_of_tasks++;
+        }
+    }
+
+    return num_of_tasks;
+}
