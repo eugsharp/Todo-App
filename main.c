@@ -4,18 +4,20 @@
 #include "features.h"
 #include "data.h"
 
-void days_menu() {
+void sub_menu(const char* time_frame) { 
     char input[10];
     int choice;
 
     while (1) {
 
-        update_array("day");
+        update_array(time_frame);
 
-        print_header("DAYS MENU");
+        char header[256];
+        
+        print_header(time_frame);
 
         // Display all tasks
-        display_tasks("day");
+        display_tasks(time_frame);
 
         printf("----------------\n");
         
@@ -41,15 +43,15 @@ void days_menu() {
         switch (choice) {
             case 1:
                 system("clear");
-                add_task("day");
+                add_task(time_frame);
                 break;
             case 2:
                 system("clear");
-                edit_task("day");
+                edit_task(time_frame);
                 break;
             case 3:
                 system("clear");
-                delete_task("day");
+                delete_task(time_frame);
                 break;
             case 4:
                 system("clear");
@@ -65,14 +67,14 @@ int main() {
     char input[10];
     int choice;
 
-    // system("clear");
+    system("clear");
     update_array("day");
     update_array("week");
     update_array("month");
     update_array("year");
 
     while (1) {
-        print_header("MAIN MENU");
+        print_header("main");
         printf("1. Days Menu\n");
         printf("2. Weeks Menu\n");
         printf("3. Months Menu\n");
@@ -96,19 +98,19 @@ int main() {
         switch (choice) {
             case 1:
                 system("clear");
-                days_menu();
+                sub_menu("day");
                 break;
             case 2:
                 system("clear");
-                printf("Weeks Menu\n");
+                sub_menu("week");
                 break;
             case 3:
                 system("clear");
-                printf("Months Menu\n");
+                sub_menu("month");
                 break;
             case 4:
                 system("clear");
-                printf("Years Menu\n");
+                sub_menu("year");
                 break;
             case 5:
                 printf("Exiting program...\n");

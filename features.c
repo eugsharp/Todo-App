@@ -36,15 +36,8 @@ void display_tasks(const char* time_frame) {
 }
 
 void add_task(const char *time_frame) {
-    
-    // display menu header
-    char header[256];
-    snprintf(header, sizeof(header), "%s MENU", time_frame);
-    for (int i = 0; header[i]; i++) {
-        header[i] = toupper(header[i]);
-    }
 
-    print_header(header);
+    print_header(time_frame);
 
     // display tasks
     display_tasks(time_frame);
@@ -81,17 +74,10 @@ void edit_task(const char *time_frame) {
         return;
     }
 
-    char header[256];
     char task_number[256];
 
-    // print the header of menu
-    snprintf(header, sizeof(header), "%s MENU", time_frame);
-    for (int i = 0; header[i]; i++) {
-        header[i] = toupper(header[i]);
-    }
-    
     while (1) {
-        print_header(header);
+        print_header(time_frame);
 
         // display tasks
         display_tasks(time_frame);
@@ -175,17 +161,10 @@ void edit_task(const char *time_frame) {
 
 void delete_task(const char *time_frame) {
     
-    char header[256];
     char task_number[256];
 
-    // print the header of menu
-    snprintf(header, sizeof(header), "%s MENU", time_frame);
-    for (int i = 0; header[i]; i++) {
-        header[i] = toupper(header[i]);
-    }
-    
     while (1) {
-        print_header(header);
+        print_header(time_frame);
 
         // display tasks
         display_tasks(time_frame);
